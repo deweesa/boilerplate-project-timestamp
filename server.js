@@ -39,6 +39,7 @@ app.get("/api/:date?", (req, res) => {
     console.log('empty param');
     let cur_unix = Date.now();
     date = new Date(cur_unix);
+    return res.json({unix: date.getTime(), utc: date.toUTCString()});
   }
 
   date = new Date(req.params.date);
