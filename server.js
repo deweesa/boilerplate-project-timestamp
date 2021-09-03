@@ -21,15 +21,31 @@ app.get("/", function (req, res) {
 
 app.get("/api/:date?", (req, res) => {
   var date;
-  var unix = parseInt(req.params.date);
 
-  if(!req.params.date){
+  /*if(!req.params.date){
+    console.log('empty param');
     let cur_unix = Date.now();
     date = new Date(cur_unix);
   } else if(isNaN(unix)) {
+    console.log('Unix is invalid, and param empty');
     date = new Date(req.params.date);
+    console.log(date);
   } else {
+    console.log('Unix is valid');
     date = new Date(unix);    
+  }*/
+
+  if(!req.params.date) {
+    console.log('empty param');
+    let cur_unix = Date.now();
+    date = new Date(cur_unix);
+  }
+
+  date = new Date(req.params.date);
+
+  if(isNaN(date)) {
+    unix = parseInt(req.params.date);
+    date = new Date(unix);
   }
 
   if(isNaN(date)) {
